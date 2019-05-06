@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import FirebaseAuth
+
 struct Constants {
     
 }
@@ -20,4 +22,16 @@ struct AlertStrings {
     static let kAddContactPlaceHolder = "Registered Email"
     static let kNotRegisteredUser = "Not a Registered user"
     static let kAddSelfAsContactError = "Cannot add you as your contact"
+}
+struct AliasFor {
+    static let kUserCollection = CollectionManager.shared.db.collection("Users")
+    static let kCurrentUser = Auth.auth().currentUser
+}
+struct keyStrings {
+    static let kEmail = "email"
+    static let kUid = "uid"
+    static let kDisplayName = "displayName"
+    static let kCreatedOn = "createdOn"
+    static let kPhotoURLString = "photoURLString"
+    static let kContacts = "contacts"
 }

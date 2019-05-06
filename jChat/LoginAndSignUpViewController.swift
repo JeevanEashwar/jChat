@@ -29,7 +29,7 @@ class LoginAndSignUpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.emailField.text = "jeevanTest1@gmail.com"
+        self.emailField.text = "jeevan@gmail.com"
         self.passwordField.text = "password"
     }
 
@@ -76,6 +76,18 @@ class LoginAndSignUpViewController: BaseViewController {
             }else {
                 if let user = authResult?.user {
                     let message = "\(user.email ?? "") user sign up successful. Please Login with your credentials"
+                    //Add user to USERS collection
+                    if let userEmail = user.email {
+                        
+                        let documentDataDictionary = [keyStrings.kEmail: userEmail,
+                                                      keyStrings.kUid:user.uid,
+                                                      keyStrings.kDisplayName: String(userEmail.split(separator: "@").first ?? ""),
+                                                      keyStrings.kPhotoURLString: user.photoURL?.absoluteString ?? "",
+                                                      keyStrings.kContacts:[]
+                            ] as [String : Any]
+                        AliasFor.kUserCollection.document(userEmail).setData(documentDataDictionary)
+                    }
+                    //Turn the page into login
                     self.showMessageOnlyAlert(message: message, completion: {
                         self.pageFunction = .LOGIN
                     })

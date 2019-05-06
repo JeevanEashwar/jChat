@@ -10,12 +10,45 @@ import UIKit
 import FirebaseAuth
 class ContactsViewController: BaseViewController {
 
+    var currentUserDocumentData : [String:Any] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        fetchAllUsersDocuments()
     }
     
+    fileprivate func updateCurrentUserDocument(field: String, value : Any, completion : (()->())?) {
+        self.activityIndicator.startAnimating()
+        if let currentUser = AliasFor.kCurrentUser?.email {
+            AliasFor.kUserCollection.document(currentUser).updateData([
+                field : value
+            ]) { (error) in
+                self.activityIndicator.stopAnimating()
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                if let completion = completion {
+                    completion()
+                }
+            }
+        }
+    }
+    
+    fileprivate func fetchAllUsersDocuments() {
+        // Do any additional setup after loading the view.
+        activityIndicator.startAnimating()
+        if let currentUser = AliasFor.kCurrentUser?.email {
+            AliasFor.kUserCollection.document(currentUser).getDocument { (documentSnapshot, error) in
+                self.activityIndicator.stopAnimating()
+                if let error = error {
+                    print(error.localizedDescription)
+                }else if let documentSnapshot = documentSnapshot {
+                    if let documentData = documentSnapshot.data() {
+                        self.currentUserDocumentData = documentData
+                    }
+                }
+            }
+        }
+    }
     @IBAction func addContactAction(_ sender: Any) {
         showTextFieldAlert(message: AlertStrings.kAddNewContact, placeholder: AlertStrings.kAddContactPlaceHolder, constructiveButtonTitle: UIElementTitles.kAdd) { (emailId) in
             if let currentUserEmail = Auth.auth().currentUser?.email {
@@ -32,6 +65,18 @@ class ContactsViewController: BaseViewController {
                 }else {
                     if let arrayOfLoginMethods = arrayOfMethods {
                         //valid user
+                        guard let currentContacts = self.currentUserDocumentData[keyStrings.kContacts] as? [String] else {
+                            self.updateCurrentUserDocument(field: keyStrings.kContacts, value:
+                                [emailId], completion: {
+                                    self.fetchAllUsersDocuments()
+                            })
+                            return
+                        }
+                        let updatedContacts = currentContacts + [emailId]
+                        self.updateCurrentUserDocument(field: keyStrings.kContacts, value:
+                            updatedContacts, completion: {
+                                self.fetchAllUsersDocuments()
+                        })
                         
                     }else {
                         //invalid
