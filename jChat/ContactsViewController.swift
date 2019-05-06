@@ -10,9 +10,18 @@ import UIKit
 import FirebaseAuth
 class ContactsViewController: BaseViewController {
 
-    var currentUserDocumentData : [String:Any] = [:]
+    @IBOutlet weak var contactsTableView: UITableView!
+    var currentUserDocumentData : [String:Any] = [:] {
+        didSet {
+            if let currentContacts = currentUserDocumentData[keyStrings.kContacts] as? [String] {
+                self.userContacts = currentContacts
+            }
+        }
+    }
+    var userContacts : [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         fetchAllUsersDocuments()
     }
     
@@ -44,6 +53,8 @@ class ContactsViewController: BaseViewController {
                 }else if let documentSnapshot = documentSnapshot {
                     if let documentData = documentSnapshot.data() {
                         self.currentUserDocumentData = documentData
+                        
+                        self.contactsTableView.reloadData()
                     }
                 }
             }
@@ -85,5 +96,15 @@ class ContactsViewController: BaseViewController {
                 }
             })
         }
+    }
+}
+extension ContactsViewController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.userContacts.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell", for: indexPath) as! ContactTableViewCell
+        cell.contactNameLabel.text = userContacts[indexPath.row]
+        return cell
     }
 }

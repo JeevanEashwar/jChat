@@ -114,16 +114,57 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="trv-di-FST">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" red="0.36862745099999999" green="0.74117647060000003" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContactTableViewCell" id="uPT-38-ffg" customClass="ContactTableViewCell" customModule="jChat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uPT-38-ffg" id="5Je-10-zOz">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTt-oE-D2J">
+                                                    <rect key="frame" x="30" y="13" width="37" height="17.5"/>
+                                                    <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="VTt-oE-D2J" firstAttribute="centerY" secondItem="5Je-10-zOz" secondAttribute="centerY" id="mEZ-cA-vrO"/>
+                                                <constraint firstItem="VTt-oE-D2J" firstAttribute="leading" secondItem="5Je-10-zOz" secondAttribute="leadingMargin" constant="15" id="oXh-cE-vZg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contactNameLabel" destination="VTt-oE-D2J" id="lwR-MG-s1v"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="MRa-OD-5Pd" id="RUT-qt-r6c"/>
+                                    <outlet property="delegate" destination="MRa-OD-5Pd" id="Y69-BN-HhI"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="5Tv-L0-CTB" firstAttribute="trailing" secondItem="trv-di-FST" secondAttribute="trailing" id="3j4-f7-lf4"/>
+                            <constraint firstItem="5Tv-L0-CTB" firstAttribute="bottom" secondItem="trv-di-FST" secondAttribute="bottom" id="7Xe-KB-cVf"/>
                             <constraint firstItem="7g1-le-Eyb" firstAttribute="top" secondItem="5Tv-L0-CTB" secondAttribute="top" id="Aqt-tJ-8ZU"/>
                             <constraint firstItem="7g1-le-Eyb" firstAttribute="trailing" secondItem="5Tv-L0-CTB" secondAttribute="trailing" id="TCz-Mh-jNX"/>
                             <constraint firstItem="7g1-le-Eyb" firstAttribute="leading" secondItem="5Tv-L0-CTB" secondAttribute="leading" id="fwz-Cv-mq6"/>
+                            <constraint firstItem="trv-di-FST" firstAttribute="top" secondItem="7g1-le-Eyb" secondAttribute="bottom" id="gvu-7w-NeB"/>
+                            <constraint firstItem="trv-di-FST" firstAttribute="leading" secondItem="5Tv-L0-CTB" secondAttribute="leading" id="ryb-Uh-II3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Tv-L0-CTB"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="0Qy-Lz-PqC"/>
+                    <connections>
+                        <outlet property="contactsTableView" destination="trv-di-FST" id="R9v-Ph-TQH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEk-fC-62f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,6 +10,7 @@
 		0894E352BF7BD621166727B1 /* Pods_jChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3C4A36F2A4FF7AC88FF28 /* Pods_jChat.framework */; };
 		093DFA8C2280833E006AE0D1 /* CollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093DFA8B2280833E006AE0D1 /* CollectionManager.swift */; };
 		093DFA8E2280A16C006AE0D1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093DFA8D2280A16C006AE0D1 /* ProfileViewController.swift */; };
+		093DFA902280AA6D006AE0D1 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093DFA8F2280AA6D006AE0D1 /* ContactTableViewCell.swift */; };
 		09FC6065227D75A80016F25A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FC6064227D75A80016F25A /* AppDelegate.swift */; };
 		09FC6067227D75A80016F25A /* LoginAndSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FC6066227D75A80016F25A /* LoginAndSignUpViewController.swift */; };
 		09FC606A227D75A80016F25A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09FC6068227D75A80016F25A /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		093DFA8B2280833E006AE0D1 /* CollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionManager.swift; sourceTree = "<group>"; };
 		093DFA8D2280A16C006AE0D1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		093DFA8F2280AA6D006AE0D1 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		09FC6061227D75A80016F25A /* jChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09FC6064227D75A80016F25A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09FC6066227D75A80016F25A /* LoginAndSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAndSignUpViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				09FC608F227D9FF80016F25A /* MainViewController.swift */,
 				093DFA8B2280833E006AE0D1 /* CollectionManager.swift */,
 				093DFA8D2280A16C006AE0D1 /* ProfileViewController.swift */,
+				093DFA8F2280AA6D006AE0D1 /* ContactTableViewCell.swift */,
 			);
 			path = jChat;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				09FC6088227D7DB10016F25A /* Constants.swift in Sources */,
 				093DFA8C2280833E006AE0D1 /* CollectionManager.swift in Sources */,
 				09FC608C227D8A810016F25A /* BaseViewController.swift in Sources */,
+				093DFA902280AA6D006AE0D1 /* ContactTableViewCell.swift in Sources */,
 				093DFA8E2280A16C006AE0D1 /* ProfileViewController.swift in Sources */,
 				09FC608E227D9DC10016F25A /* ContactsViewController.swift in Sources */,
 			);
