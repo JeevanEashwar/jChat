@@ -22,6 +22,7 @@ struct AlertStrings {
     static let kAddContactPlaceHolder = "Registered Email"
     static let kNotRegisteredUser = "Not a Registered user"
     static let kAddSelfAsContactError = "Cannot add you as your contact"
+    static let kUserProfileUpdateSuccess = "Profile updated successfully"
 }
 struct AliasFor {
     static let kUserCollection = CollectionManager.shared.db.collection("Users")
@@ -32,6 +33,6 @@ struct keyStrings {
     static let kUid = "uid"
     static let kDisplayName = "displayName"
     static let kCreatedOn = "createdOn"
-    static let kPhotoURLString = "photoURLString"
+    static let kPhotoURL = "photoURL"
     static let kContacts = "contacts"
 }

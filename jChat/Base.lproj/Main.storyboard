@@ -135,16 +135,78 @@
                 <tabBarController storyboardIdentifier="MainViewController" automaticallyAdjustsScrollViewInsets="NO" id="cct-wz-Yfg" customClass="MainViewController" customModule="jChat" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KBt-5A-8Zb">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="MRa-OD-5Pd" kind="relationship" relationship="viewControllers" id="hf9-du-Uex"/>
+                        <segue destination="M4R-4f-HtG" kind="relationship" relationship="viewControllers" id="LbV-XW-yde"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kx-7J-ab0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="909.60000000000002" y="26.53673163418291"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="nEb-id-ymD">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController" id="M4R-4f-HtG" customClass="ProfileViewController" customModule="jChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NZy-Fw-mID">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FEH-Ze-lb7">
+                                <rect key="frame" x="87.5" y="90" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="WBD-eM-vjV"/>
+                                    <constraint firstAttribute="height" constant="200" id="pq5-Mv-pK1"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Display Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ohT-2Y-7Sd">
+                                <rect key="frame" x="20" y="315" width="335" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ceg-Z4-wOf">
+                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
+                                <color key="backgroundColor" red="0.2274509804" green="0.63921568630000003" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ijB-QM-MVz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="17"/>
+                                <state key="normal" title="Update">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="update:" destination="M4R-4f-HtG" eventType="touchUpInside" id="jtj-ur-APL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="x6x-Qh-JHh" firstAttribute="trailing" secondItem="ohT-2Y-7Sd" secondAttribute="trailing" constant="20" id="1xP-On-4OB"/>
+                            <constraint firstItem="Ceg-Z4-wOf" firstAttribute="leading" secondItem="x6x-Qh-JHh" secondAttribute="leading" id="Cvj-3A-uuX"/>
+                            <constraint firstItem="x6x-Qh-JHh" firstAttribute="bottom" secondItem="Ceg-Z4-wOf" secondAttribute="bottom" id="P9U-AR-01K"/>
+                            <constraint firstItem="ohT-2Y-7Sd" firstAttribute="top" secondItem="FEH-Ze-lb7" secondAttribute="bottom" constant="25" id="SPU-HW-xmv"/>
+                            <constraint firstItem="x6x-Qh-JHh" firstAttribute="trailing" secondItem="Ceg-Z4-wOf" secondAttribute="trailing" id="bXJ-Xl-nBt"/>
+                            <constraint firstItem="FEH-Ze-lb7" firstAttribute="centerX" secondItem="NZy-Fw-mID" secondAttribute="centerX" id="o30-KK-stG"/>
+                            <constraint firstItem="FEH-Ze-lb7" firstAttribute="top" secondItem="x6x-Qh-JHh" secondAttribute="top" constant="70" id="y1Z-rk-Jsb"/>
+                            <constraint firstItem="ohT-2Y-7Sd" firstAttribute="leading" secondItem="x6x-Qh-JHh" secondAttribute="leading" constant="20" id="yDF-Q8-Tlp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="x6x-Qh-JHh"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="gFV-Rx-woc"/>
+                    <connections>
+                        <outlet property="contactImage" destination="FEH-Ze-lb7" id="enp-v5-6pQ"/>
+                        <outlet property="displayName" destination="ohT-2Y-7Sd" id="Fzp-eE-L0Q"/>
+                        <outlet property="updateButton" destination="Ceg-Z4-wOf" id="VtO-uT-8ys"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cMW-lj-6tC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1849" y="728"/>
         </scene>
     </scenes>
     <resources>

@@ -82,7 +82,7 @@ class LoginAndSignUpViewController: BaseViewController {
                         let documentDataDictionary = [keyStrings.kEmail: userEmail,
                                                       keyStrings.kUid:user.uid,
                                                       keyStrings.kDisplayName: String(userEmail.split(separator: "@").first ?? ""),
-                                                      keyStrings.kPhotoURLString: user.photoURL?.absoluteString ?? "",
+                                                      keyStrings.kPhotoURL: user.photoURL,
                                                       keyStrings.kContacts:[]
                             ] as [String : Any]
                         AliasFor.kUserCollection.document(userEmail).setData(documentDataDictionary)
