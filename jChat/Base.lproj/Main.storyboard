@@ -1,24 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login And Sign Up View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginAndSignUpViewController" customModule="jChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.050000000000000003" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="randomBG" translatesAutoresizingMaskIntoConstraints="NO" id="VCg-oy-OJd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jChat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAK-Jb-cOv">
+                                <rect key="frame" x="160" y="145" width="55" height="23"/>
+                                <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="20"/>
+                                <color key="textColor" red="0.22687399389999999" green="0.63755619529999996" blue="0.82663315530000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="SE6-7B-se0">
+                                <rect key="frame" x="15" y="213" width="345" height="241"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pT1-vS-Saz">
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="30"/>
+                                        <color key="backgroundColor" red="0.84313725490000002" green="0.81960784310000001" blue="0.67701051743698637" alpha="0.4845890410958904" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jlv-IG-WUx">
+                                        <rect key="frame" x="0.0" y="69" width="345" height="30"/>
+                                        <color key="backgroundColor" red="0.84313725490000002" green="0.81960784310000001" blue="0.67701051743698637" alpha="0.4845890410958904" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gid-FH-Uix">
+                                        <rect key="frame" x="0.0" y="138" width="345" height="32"/>
+                                        <color key="backgroundColor" red="0.2274509804" green="0.63921568630000003" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="17"/>
+                                        <state key="normal" title="Login">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="firstButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E1B-7y-yyf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ux5-Hm-puS">
+                                        <rect key="frame" x="0.0" y="209" width="345" height="32"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="17"/>
+                                        <state key="normal" title="SignUp">
+                                            <color key="titleColor" red="0.22687399389999999" green="0.63755619529999996" blue="0.82663315530000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="secondButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1vP-eS-72m"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SE6-7B-se0" secondAttribute="trailing" constant="15" id="3Za-Rx-yzZ"/>
+                            <constraint firstItem="NAK-Jb-cOv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3jj-Ma-X3g"/>
+                            <constraint firstItem="SE6-7B-se0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BaI-t3-xME"/>
+                            <constraint firstItem="SE6-7B-se0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="HBt-eV-rE6"/>
+                            <constraint firstItem="VCg-oy-OJd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Lqi-10-ZQW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VCg-oy-OJd" secondAttribute="bottom" id="PUX-XV-u9o"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VCg-oy-OJd" secondAttribute="trailing" id="jDc-gX-awP"/>
+                            <constraint firstItem="SE6-7B-se0" firstAttribute="top" secondItem="NAK-Jb-cOv" secondAttribute="bottom" constant="45" id="lPX-0p-JhO"/>
+                            <constraint firstItem="VCg-oy-OJd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="msx-Hp-V9M"/>
+                            <constraint firstItem="SE6-7B-se0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="nIQ-Gb-Ybe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="pT1-vS-Saz" id="jml-xl-oov"/>
+                        <outlet property="firstButton" destination="gid-FH-Uix" id="fsr-rR-Hfs"/>
+                        <outlet property="passwordField" destination="Jlv-IG-WUx" id="1gi-Eg-aMw"/>
+                        <outlet property="secondButton" destination="ux5-Hm-puS" id="dix-Au-2Sd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Contacts View Controller-->
+        <scene sceneID="cHI-J7-YoB">
+            <objects>
+                <viewController id="MRa-OD-5Pd" customClass="ContactsViewController" customModule="jChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2RZ-9P-JVR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7g1-le-Eyb">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Contacts" id="UOI-2Y-j8u">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="K6z-bH-Ery">
+                                            <connections>
+                                                <action selector="addContactAction:" destination="MRa-OD-5Pd" id="8aU-IO-Voe"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7g1-le-Eyb" firstAttribute="top" secondItem="5Tv-L0-CTB" secondAttribute="top" id="Aqt-tJ-8ZU"/>
+                            <constraint firstItem="7g1-le-Eyb" firstAttribute="trailing" secondItem="5Tv-L0-CTB" secondAttribute="trailing" id="TCz-Mh-jNX"/>
+                            <constraint firstItem="7g1-le-Eyb" firstAttribute="leading" secondItem="5Tv-L0-CTB" secondAttribute="leading" id="fwz-Cv-mq6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5Tv-L0-CTB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="0Qy-Lz-PqC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zEk-fC-62f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1848.8" y="26.53673163418291"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="Qj7-9Z-weo">
+            <objects>
+                <tabBarController storyboardIdentifier="MainViewController" automaticallyAdjustsScrollViewInsets="NO" id="cct-wz-Yfg" customClass="MainViewController" customModule="jChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KBt-5A-8Zb">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="MRa-OD-5Pd" kind="relationship" relationship="viewControllers" id="hf9-du-Uex"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1kx-7J-ab0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="909.60000000000002" y="26.53673163418291"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="randomBG" width="300" height="319"/>
+    </resources>
 </document>

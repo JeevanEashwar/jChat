@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>295913957220-b794en9h7rpsq4tkdum5onlsquff5h8l.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.295913957220-b794en9h7rpsq4tkdum5onlsquff5h8l</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCgceDq90x5F4TN9uJ1W7Fxje1kKUHMvMk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>295913957220</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>personal.jChat</string>
+	<key>PROJECT_ID</key>
+	<string>jchat-6758c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>jchat-6758c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:295913957220:ios:03b87f205c9410d2</string>
+	<key>DATABASE_URL</key>
+	<string>https://jchat-6758c.firebaseio.com</string>
+</dict>
+</plist>
