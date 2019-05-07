@@ -74,15 +74,30 @@ class ProfileViewController: BaseViewController {
 
 }
 extension UIImageView {
+    
     func load(url: URL) {
+        let activityIndicatorRef = self.startActivityIndicator()
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
+                        activityIndicatorRef.stopAnimating()
                         self?.image = image
                     }
                 }
             }
         }
+    }
+    func startActivityIndicator() -> UIActivityIndicatorView {
+        var activityIndicator: UIActivityIndicatorView!
+        activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+        var centerPoint = self.center
+        centerPoint.x = self.bounds.width / 2
+        centerPoint.y = self.bounds.height / 2
+        activityIndicator.center = centerPoint
+        activityIndicator.hidesWhenStopped = true
+        self.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        return activityIndicator
     }
 }
