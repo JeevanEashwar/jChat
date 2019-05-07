@@ -50,6 +50,23 @@ class BaseViewController : UIViewController {
             print("completion block")
         })
     }
+    func showTwoOptionsAlert(message: String, text1:String, text2:String, selection1: @escaping ()->(), selection2: @escaping ()->()) {
+        let alert = UIAlertController(title: "jChat", message: message, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: text1, style: .default, handler: { (_) in
+            selection1()
+        }))
+        alert.addAction(UIAlertAction(title: text2, style: .default, handler: { (_) in
+            selection2()
+        }))
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (_) in
+            print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            
+        })
+    }
     // MARK: - General Methods
     func addActivityIndicator() {
         // Set activity indicator properties and start animating for first time load

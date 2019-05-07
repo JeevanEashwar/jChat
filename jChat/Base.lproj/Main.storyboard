@@ -197,7 +197,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FEH-Ze-lb7">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="FEH-Ze-lb7">
                                 <rect key="frame" x="87.5" y="90" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="WBD-eM-vjV"/>
@@ -224,6 +224,33 @@
                                     <action selector="update:" destination="M4R-4f-HtG" eventType="touchUpInside" id="jtj-ur-APL"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RGb-Iw-hke">
+                                <rect key="frame" x="16" y="534" width="343" height="40"/>
+                                <subviews>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3iF-CP-sE2">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="2"/>
+                                        <color key="tintColor" red="0.2274509804" green="0.63921568630000003" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="1om-ph-5aF"/>
+                                        </constraints>
+                                    </progressView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload in progress. 10% complete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxz-lW-GQq">
+                                        <rect key="frame" x="58.5" y="12.5" width="226" height="17.5"/>
+                                        <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="15"/>
+                                        <color key="textColor" red="0.2274509804" green="0.63921568630000003" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="3iF-CP-sE2" firstAttribute="top" secondItem="RGb-Iw-hke" secondAttribute="top" id="1Ml-7C-glR"/>
+                                    <constraint firstAttribute="trailing" secondItem="3iF-CP-sE2" secondAttribute="trailing" id="2AR-Mr-adS"/>
+                                    <constraint firstAttribute="height" constant="40" id="Egb-Uh-MOi"/>
+                                    <constraint firstAttribute="bottom" secondItem="lxz-lW-GQq" secondAttribute="bottom" constant="10" id="IbM-fI-ss4"/>
+                                    <constraint firstItem="3iF-CP-sE2" firstAttribute="leading" secondItem="RGb-Iw-hke" secondAttribute="leading" id="RKG-5F-T7b"/>
+                                    <constraint firstItem="lxz-lW-GQq" firstAttribute="centerX" secondItem="RGb-Iw-hke" secondAttribute="centerX" id="bqM-rI-PQg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -231,8 +258,11 @@
                             <constraint firstItem="Ceg-Z4-wOf" firstAttribute="leading" secondItem="x6x-Qh-JHh" secondAttribute="leading" id="Cvj-3A-uuX"/>
                             <constraint firstItem="x6x-Qh-JHh" firstAttribute="bottom" secondItem="Ceg-Z4-wOf" secondAttribute="bottom" id="P9U-AR-01K"/>
                             <constraint firstItem="ohT-2Y-7Sd" firstAttribute="top" secondItem="FEH-Ze-lb7" secondAttribute="bottom" constant="25" id="SPU-HW-xmv"/>
+                            <constraint firstItem="RGb-Iw-hke" firstAttribute="leading" secondItem="NZy-Fw-mID" secondAttribute="leadingMargin" id="YxE-nz-q1M"/>
                             <constraint firstItem="x6x-Qh-JHh" firstAttribute="trailing" secondItem="Ceg-Z4-wOf" secondAttribute="trailing" id="bXJ-Xl-nBt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RGb-Iw-hke" secondAttribute="trailing" id="lq3-Cx-FJd"/>
                             <constraint firstItem="FEH-Ze-lb7" firstAttribute="centerX" secondItem="NZy-Fw-mID" secondAttribute="centerX" id="o30-KK-stG"/>
+                            <constraint firstItem="Ceg-Z4-wOf" firstAttribute="top" secondItem="RGb-Iw-hke" secondAttribute="bottom" id="uBl-sf-ssF"/>
                             <constraint firstItem="FEH-Ze-lb7" firstAttribute="top" secondItem="x6x-Qh-JHh" secondAttribute="top" constant="70" id="y1Z-rk-Jsb"/>
                             <constraint firstItem="ohT-2Y-7Sd" firstAttribute="leading" secondItem="x6x-Qh-JHh" secondAttribute="leading" constant="20" id="yDF-Q8-Tlp"/>
                         </constraints>
@@ -242,6 +272,9 @@
                     <connections>
                         <outlet property="contactImage" destination="FEH-Ze-lb7" id="enp-v5-6pQ"/>
                         <outlet property="displayName" destination="ohT-2Y-7Sd" id="Fzp-eE-L0Q"/>
+                        <outlet property="progressIndicatorBar" destination="3iF-CP-sE2" id="gTL-1D-asS"/>
+                        <outlet property="progressMessage" destination="lxz-lW-GQq" id="YVy-Pf-6l2"/>
+                        <outlet property="progressView" destination="RGb-Iw-hke" id="J8m-an-mwL"/>
                         <outlet property="updateButton" destination="Ceg-Z4-wOf" id="VtO-uT-8ys"/>
                     </connections>
                 </viewController>
@@ -251,6 +284,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="profile_placeholder" width="336" height="336"/>
         <image name="randomBG" width="300" height="319"/>
     </resources>
 </document>
