@@ -17,18 +17,15 @@ class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        contactImage.layer.cornerRadius = contactImage.frame.height/2
+        contactImage.layer.masksToBounds = true
         // Do any additional setup after loading the view.
         if let currentUser = Auth.auth().currentUser {
             displayName.text = currentUser.displayName ?? ""
             if let photoUrl = currentUser.photoURL {
-                do {
-                    let imageData = try Data(contentsOf: photoUrl)
-                    self.contactImage.image = UIImage(data:imageData)
-                }
-                catch let error {
-                    print(error.localizedDescription)
-                }
+                self.contactImage.load(url: photoUrl)
+            }else if let placeHolderURL = URL(string: Constants.kPlaceHolderImageURL) {
+                self.contactImage.load(url: placeHolderURL)
             }
         }
     }
@@ -75,4 +72,17 @@ class ProfileViewController: BaseViewController {
     }
     */
 
+}
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
 }

@@ -10,7 +10,7 @@ import Foundation
 import FirebaseAuth
 
 struct Constants {
-    
+    static let kPlaceHolderImageURL = "https://firebasestorage.googleapis.com/v0/b/jchat-6758c.appspot.com/o/profile-placeholder.jpg?alt=media&token=2eb20716-52b3-4dc1-8be9-fe2c2cecb331"
 }
 struct UIElementTitles {
     static let kLoginText = "Login"
@@ -22,6 +22,7 @@ struct AlertStrings {
     static let kAddContactPlaceHolder = "Registered Email"
     static let kNotRegisteredUser = "Not a Registered user"
     static let kAddSelfAsContactError = "Cannot add you as your contact"
+    static let kAddExistingAsContactError = "Contact exists already"
     static let kUserProfileUpdateSuccess = "Profile updated successfully"
 }
 struct AliasFor {

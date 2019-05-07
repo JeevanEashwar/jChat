@@ -53,7 +53,6 @@ class ContactsViewController: BaseViewController {
                 }else if let documentSnapshot = documentSnapshot {
                     if let documentData = documentSnapshot.data() {
                         self.currentUserDocumentData = documentData
-                        
                         self.contactsTableView.reloadData()
                     }
                 }
@@ -65,6 +64,9 @@ class ContactsViewController: BaseViewController {
             if let currentUserEmail = Auth.auth().currentUser?.email {
                 if currentUserEmail == emailId {
                     self.showMessageOnlyAlert(message: AlertStrings.kAddSelfAsContactError, completion: nil)
+                    return
+                }else if self.userContacts.contains(emailId) {
+                    self.showMessageOnlyAlert(message: AlertStrings.kAddExistingAsContactError, completion: nil)
                     return
                 }
             }
@@ -98,7 +100,7 @@ class ContactsViewController: BaseViewController {
         }
     }
 }
-extension ContactsViewController : UITableViewDataSource {
+extension ContactsViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.userContacts.count
     }
@@ -106,5 +108,8 @@ extension ContactsViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell", for: indexPath) as! ContactTableViewCell
         cell.contactNameLabel.text = userContacts[indexPath.row]
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
