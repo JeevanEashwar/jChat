@@ -110,7 +110,7 @@ class ChatViewController: BaseViewController {
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
         let keyboardFrame = keyboardSize.cgRectValue
-        if self.view.frame.origin.y == 0 {
+        if self.view.frame.origin.y >= 0 {
             self.view.frame.origin.y -= keyboardFrame.height
         }
         self.bottomConstraint.constant = 10
@@ -121,7 +121,7 @@ class ChatViewController: BaseViewController {
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
         let keyboardFrame = keyboardSize.cgRectValue
-        if self.view.frame.origin.y != 0{
+        if self.view.frame.origin.y < 0{
             self.view.frame.origin.y += keyboardFrame.height
         }
         self.bottomConstraint.constant = 90

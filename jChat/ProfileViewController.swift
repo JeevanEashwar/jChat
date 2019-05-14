@@ -27,6 +27,8 @@ class ProfileViewController: BaseViewController {
         progressView.isHidden = true
         imagePicker.delegate = self
         setupContactImageView()
+        keyboardHandling()
+        addTapGesture()
     }
     
     @IBAction func update(_ sender: Any) {
@@ -198,6 +200,40 @@ extension ProfileViewController {
             }
         }
         
+    }
+    private func keyboardHandling() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    private func addTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        if self.view.frame.origin.y >= 0 {
+            self.view.frame.origin.y -= keyboardFrame.height
+        }
+        self.view.layoutIfNeeded()
+        
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        if self.view.frame.origin.y < 0{
+            self.view.frame.origin.y += keyboardFrame.height
+        }
+        self.view.layoutIfNeeded()
     }
 }
 
