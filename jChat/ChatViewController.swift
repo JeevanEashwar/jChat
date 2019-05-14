@@ -18,6 +18,7 @@ class ChatViewController: BaseViewController {
 
     @IBOutlet weak var messagesTableView: UITableView!
     @IBOutlet weak var draftTextView: UITextView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var messagesList : [MessageModel] = []
     var contactId : String = ""
@@ -34,6 +35,16 @@ class ChatViewController: BaseViewController {
         draftTextView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         self.title = contactId
         self.navigationController!.navigationBar.topItem?.title = ""
+    }
+    
+    fileprivate func reloadMessageTableAndScrollToLastRow() {
+        self.messagesTableView.reloadData()
+        let lastIndex = self.messagesTableView.numberOfRows(inSection: 0)
+        if lastIndex > 0 {
+            let lastIndexPath = IndexPath(row: lastIndex - 1, section: 0)
+            self.messagesTableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
+        }
+        
     }
     
     private func fetchAllChatMessages() {
@@ -66,7 +77,7 @@ class ChatViewController: BaseViewController {
                         }
                         self.messagesList.append(messageModel)
                     }
-                    self.messagesTableView.reloadData()
+                    self.reloadMessageTableAndScrollToLastRow()
                 }
             }
         }
@@ -102,6 +113,8 @@ class ChatViewController: BaseViewController {
         if self.view.frame.origin.y == 0 {
             self.view.frame.origin.y -= keyboardFrame.height
         }
+        self.bottomConstraint.constant = 10
+        self.view.layoutIfNeeded()
         
     }
     @objc func keyboardWillHide(notification: NSNotification) {
@@ -111,6 +124,8 @@ class ChatViewController: BaseViewController {
         if self.view.frame.origin.y != 0{
             self.view.frame.origin.y += keyboardFrame.height
         }
+        self.bottomConstraint.constant = 90
+        self.view.layoutIfNeeded()
     }
     
     @IBAction func addAttachmentButtonClicked(_ sender: Any) {
@@ -146,7 +161,7 @@ class ChatViewController: BaseViewController {
     private func messageSentSuccessfully(_ message:MessageModel) {
         draftTextView.text = ""
         self.messagesList.append(message)
-        self.messagesTableView.reloadData()
+        self.reloadMessageTableAndScrollToLastRow()
     }
     
 }

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController" customModule="jChat" customModuleProvider="target">
             <connections>
+                <outlet property="bottomConstraint" destination="ehB-IA-Bf0" id="nPK-TW-mjF"/>
                 <outlet property="draftTextView" destination="b3b-8O-9Gf" id="fVo-hk-N6y"/>
                 <outlet property="messagesTableView" destination="K0C-cF-ZN6" id="LcY-WX-uyO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
