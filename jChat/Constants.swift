@@ -11,6 +11,12 @@ import FirebaseAuth
 
 struct Constants {
     static let kPlaceHolderImageURL = "https://firebasestorage.googleapis.com/v0/b/jchat-6758c.appspot.com/o/profile-placeholder.jpg?alt=media&token=2eb20716-52b3-4dc1-8be9-fe2c2cecb331"
+    
+    static func kCommonDateFormatter () -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, h:mm a"
+        return dateFormatter
+    }
 }
 struct UIElementTitles {
     static let kLoginText = "Login"
@@ -36,6 +42,7 @@ struct AliasFor {
     static let kUserCollection = CollectionManager.shared.db.collection("Users")
     static let kCurrentUser = Auth.auth().currentUser
     static let kProfilePicStorageRef = CollectionManager.shared.storage.reference().child("UserProfilePics")
+    static let kMessagesCollection = CollectionManager.shared.db.collection("Messages")
 }
 struct keyStrings {
     static let kEmail = "email"
@@ -44,4 +51,27 @@ struct keyStrings {
     static let kCreatedOn = "createdOn"
     static let kPhotoURL = "photoURL"
     static let kContacts = "contacts"
+    static let kFromEmail = "fromEmail"
+    static let kToEmail = "toEmail"
+    static let kTimeStamp = "timeStamp"
+    static let kMessageString = "messageString"
+    static let kThreadId = "threadId"
+}
+
+struct Nibname {
+    static let kChatMessageCell = "ChatMessageTableViewCell"
+}
+struct Colors {
+    static let kChatGreen = UIColor(red: 220/255.0, green: 251/255.0, blue: 197/255.0, alpha: 1.0)
+}
+extension UIView {
+    func dropShadowWithCornerRadius(cornerRadius : CGFloat){
+        self.layer.cornerRadius = cornerRadius
+        self.layer.masksToBounds = false
+        self.layer.shadowRadius = 4
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        self.layer.shadowOpacity = 0.25
+        
+    }
 }

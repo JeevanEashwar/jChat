@@ -111,5 +111,8 @@ extension ContactsViewController : UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let chatVC = ChatViewController()
+        chatVC.contactId = userContacts[indexPath.row]
+        self.navigationController?.pushViewController(chatVC, animated: true)
     }
 }

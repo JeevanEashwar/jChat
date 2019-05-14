@@ -94,7 +94,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Contacts View Controller-->
+        <!--Contacts-->
         <scene sceneID="cHI-J7-YoB">
             <objects>
                 <viewController id="MRa-OD-5Pd" customClass="ContactsViewController" customModule="jChat" customModuleProvider="target" sceneMemberID="viewController">
@@ -102,20 +102,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7g1-le-Eyb">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Contacts" id="UOI-2Y-j8u">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="K6z-bH-Ery">
-                                            <connections>
-                                                <action selector="addContactAction:" destination="MRa-OD-5Pd" id="8aU-IO-Voe"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="trv-di-FST">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="74" width="375" height="544"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.36862745099999999" green="0.74117647060000003" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -153,22 +141,25 @@
                         <constraints>
                             <constraint firstItem="5Tv-L0-CTB" firstAttribute="trailing" secondItem="trv-di-FST" secondAttribute="trailing" id="3j4-f7-lf4"/>
                             <constraint firstItem="5Tv-L0-CTB" firstAttribute="bottom" secondItem="trv-di-FST" secondAttribute="bottom" id="7Xe-KB-cVf"/>
-                            <constraint firstItem="7g1-le-Eyb" firstAttribute="top" secondItem="5Tv-L0-CTB" secondAttribute="top" id="Aqt-tJ-8ZU"/>
-                            <constraint firstItem="7g1-le-Eyb" firstAttribute="trailing" secondItem="5Tv-L0-CTB" secondAttribute="trailing" id="TCz-Mh-jNX"/>
-                            <constraint firstItem="7g1-le-Eyb" firstAttribute="leading" secondItem="5Tv-L0-CTB" secondAttribute="leading" id="fwz-Cv-mq6"/>
-                            <constraint firstItem="trv-di-FST" firstAttribute="top" secondItem="7g1-le-Eyb" secondAttribute="bottom" id="gvu-7w-NeB"/>
+                            <constraint firstItem="trv-di-FST" firstAttribute="top" secondItem="5Tv-L0-CTB" secondAttribute="top" constant="10" id="OTY-Nf-3sx"/>
                             <constraint firstItem="trv-di-FST" firstAttribute="leading" secondItem="5Tv-L0-CTB" secondAttribute="leading" id="ryb-Uh-II3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Tv-L0-CTB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="0Qy-Lz-PqC"/>
+                    <navigationItem key="navigationItem" title="Contacts" id="35m-VU-kTK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="K6z-bH-Ery">
+                            <connections>
+                                <action selector="addContactAction:" destination="MRa-OD-5Pd" id="8aU-IO-Voe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="contactsTableView" destination="trv-di-FST" id="R9v-Ph-TQH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEk-fC-62f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1848.8" y="26.53673163418291"/>
+            <point key="canvasLocation" x="3336.8000000000002" y="45.42728635682159"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="Qj7-9Z-weo">
@@ -181,13 +172,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="MRa-OD-5Pd" kind="relationship" relationship="viewControllers" id="hf9-du-Uex"/>
+                        <segue destination="zwq-xG-ops" kind="relationship" relationship="viewControllers" id="hf9-du-Uex"/>
                         <segue destination="M4R-4f-HtG" kind="relationship" relationship="viewControllers" id="LbV-XW-yde"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kx-7J-ab0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="909.60000000000002" y="26.53673163418291"/>
+            <point key="canvasLocation" x="1433" y="45"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="nEb-id-ymD">
@@ -280,7 +271,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMW-lj-6tC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1849" y="728"/>
+            <point key="canvasLocation" x="2556" y="838"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="prX-Md-ZcE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zwq-xG-ops" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="0Qy-Lz-PqC"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FfL-6a-gvO">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MRa-OD-5Pd" kind="relationship" relationship="rootViewController" id="HUF-8z-3Dl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PdG-tE-bDy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2397.5999999999999" y="45.42728635682159"/>
         </scene>
     </scenes>
     <resources>
