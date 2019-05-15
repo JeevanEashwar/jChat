@@ -16,4 +16,5 @@ class CollectionManager {
     static let shared = CollectionManager()
     let db = Firestore.firestore()
     let storage = Storage.storage()
+    var imagesCollection : [String : Data] = [:]
 }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+
 struct MessageModel {
     var message : String
     var timeStamp : String
@@ -22,6 +24,8 @@ class ChatViewController: BaseViewController {
     
     var messagesList : [MessageModel] = []
     var contactId : String = ""
+    var imagePicker : UIImagePickerController = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +39,7 @@ class ChatViewController: BaseViewController {
         draftTextView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         self.title = contactId
         self.navigationController!.navigationBar.topItem?.title = ""
+        imagePicker.delegate = self
     }
     
     fileprivate func reloadMessageTableAndScrollToLastRow() {
@@ -90,6 +95,11 @@ class ChatViewController: BaseViewController {
         
         let nib1 = UINib(nibName: Nibname.kChatMessageCell, bundle: nil)
         messagesTableView.register(nib1, forCellReuseIdentifier: Nibname.kChatMessageCell)
+        
+        let nib2 = UINib(nibName: Nibname.kAttachmentTableViewCell, bundle: nil)
+        messagesTableView.register(nib2, forCellReuseIdentifier: Nibname.kAttachmentTableViewCell)
+        
+        
     }
     private func keyboardHandling() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
@@ -129,8 +139,52 @@ class ChatViewController: BaseViewController {
     }
     
     @IBAction func addAttachmentButtonClicked(_ sender: Any) {
-        
+        showTwoOptionsAlert(message: AlertStrings.kImagePickMessage, text1: UIElementTitles.kGallery, text2: UIElementTitles.kCamera, selection1: {
+            //Gallery
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                self.imagePicker.allowsEditing = true
+                self.imagePicker.sourceType = .photoLibrary
+                self.imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+                self.present(self.imagePicker, animated: true, completion: nil)
+            }
+            else {
+                self.showMessageOnlyAlert(message: AlertStrings.kNoLibraryMessage, completion: nil)
+            }
+        }) {
+            //Camera
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                self.imagePicker.allowsEditing = true
+                self.imagePicker.sourceType = .camera
+                self.imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera)!
+                self.present(self.imagePicker, animated: true, completion: nil)
+            }else {
+                self.showMessageOnlyAlert(message: AlertStrings.kNoCameraMessage, completion: nil)
+            }
+        }
     }
+    fileprivate func addDocumentToMessagesCollection(_ currentUser: String, _ timeStampString: String, _ messageText: String, _ threadId: String, photoURL : String?) {
+        var messageDictionary : [String: Any] = [:]
+        messageDictionary[keyStrings.kFromEmail] = currentUser
+        messageDictionary[keyStrings.kToEmail] = contactId
+        messageDictionary[keyStrings.kTimeStamp] = timeStampString
+        messageDictionary[keyStrings.kMessageString] = messageText
+        messageDictionary[keyStrings.kThreadId] = threadId
+        if let photoURLString = photoURL {
+            messageDictionary[keyStrings.kPhotoURL] = photoURLString
+        }
+        self.activityIndicator.startAnimating()
+        AliasFor.kMessagesCollection.addDocument(data: messageDictionary) { (error) in
+            self.activityIndicator.stopAnimating()
+            if let error = error {
+                self.showMessageOnlyAlert(message: error.localizedDescription, completion: nil)
+            }else {
+                
+                let messageModel = MessageModel(message: messageText, timeStamp: timeStampString, attachmentPhotoURL: photoURL, messageType: .ME, threadId: threadId)
+                self.messageSentSuccessfully(messageModel)
+            }
+        }
+    }
+    
     @IBAction func sendClicked(_ sender: Any) {
         self.dismissKeyboard()
         let messageText = draftTextView.text!
@@ -138,23 +192,7 @@ class ChatViewController: BaseViewController {
         let timeStampString = Constants.kCommonDateFormatter().string(from: timeNow)
         if let currentUser = AliasFor.kCurrentUser?.email {
             let threadId = currentUser < self.contactId ? (currentUser + "_" + self.contactId) : (self.contactId + "_" + currentUser)
-            var messageDictionary : [String: Any] = [:]
-            messageDictionary[keyStrings.kFromEmail] = currentUser
-            messageDictionary[keyStrings.kToEmail] = contactId
-            messageDictionary[keyStrings.kTimeStamp] = timeStampString
-            messageDictionary[keyStrings.kMessageString] = messageText
-            messageDictionary[keyStrings.kThreadId] = threadId
-            self.activityIndicator.startAnimating()
-            AliasFor.kMessagesCollection.addDocument(data: messageDictionary) { (error) in
-                self.activityIndicator.stopAnimating()
-                if let error = error {
-                    self.showMessageOnlyAlert(message: error.localizedDescription, completion: nil)
-                }else {
-                    
-                    let messageModel = MessageModel(message: messageText, timeStamp: timeStampString, attachmentPhotoURL: nil, messageType: .ME, threadId: threadId)
-                    self.messageSentSuccessfully(messageModel)
-                }
-            }
+            addDocumentToMessagesCollection(currentUser, timeStampString, messageText, threadId, photoURL: nil)
         }
         
     }
@@ -162,6 +200,42 @@ class ChatViewController: BaseViewController {
         draftTextView.text = ""
         self.messagesList.append(message)
         self.reloadMessageTableAndScrollToLastRow()
+    }
+    fileprivate func uploadSelectedImageToFirebaseStorage(chosenImage: UIImage) {
+        if let currentUser = Auth.auth().currentUser {
+            let picName = "UploadBy" + currentUser.uid + Date(timeIntervalSinceNow: 0).description + ".png"
+            let otherPicsFolderRef = AliasFor.kOtherPicsStorageRef.child(picName)
+            guard let imageData = chosenImage.pngData() else {
+                return
+            }
+            // Start Upload
+            self.activityIndicator.startAnimating()
+            let uploadTask = otherPicsFolderRef.putData(imageData, metadata: nil) { (metadata, error) in
+                guard let metadata = metadata else {
+                    //self.uploadFailed()
+                    return
+                }
+                // Metadata contains file metadata such as size, content-type.
+                let size = metadata.size
+                // You can also access to download URL after upload.
+                otherPicsFolderRef.downloadURL { (url, error) in
+                    self.activityIndicator.stopAnimating()
+                    guard let downloadURL = url else {
+                        // Uh-oh, an error occurred!
+                        //self.uploadFailed()
+                        return
+                    }
+                    if let  currentUserEmail = currentUser.email {
+                        let threadId = currentUserEmail < self.contactId ? (currentUserEmail + "_" + self.contactId) : (self.contactId + "_" + currentUserEmail)
+                        let timeNow = Date(timeIntervalSinceNow: 0)
+                        let timeStampString = Constants.kCommonDateFormatter().string(from: timeNow)
+                        self.addDocumentToMessagesCollection(currentUserEmail, timeStampString, "", threadId, photoURL: downloadURL.absoluteString)
+                    }
+                    
+                }
+                
+            }
+        }
     }
     
 }
@@ -171,11 +245,41 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Nibname.kChatMessageCell, for: indexPath) as! ChatMessageTableViewCell
         let message = messagesList[indexPath.row]
-        cell.configureUI(message: message.message, time: message.timeStamp, messageType: message.messageType)
-        return cell
+        if let messageHasAttachment = message.attachmentPhotoURL {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Nibname.kAttachmentTableViewCell, for: indexPath) as! AttachmentTableViewCell
+            cell.configureUI(imageURL: messageHasAttachment, time: message.timeStamp, messageType: message.messageType)
+            cell.delegate = self
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Nibname.kChatMessageCell, for: indexPath) as! ChatMessageTableViewCell
+            cell.configureUI(message: message.message, time: message.timeStamp, messageType: message.messageType)
+            return cell
+        }
     }
     
+}
+extension ChatViewController : FullScreenImageDelegate {
+    func showImageWithDataOnFullScreen(data: Data) {
+        let fullScreenImageVC = FullScreenImageViewController()
+        fullScreenImageVC.fullImageData = data
+        self.navigationController?.pushViewController(fullScreenImageVC, animated: true)
+    }
+}
+extension ChatViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let chosenImage = info[.editedImage] as? UIImage else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        dismiss(animated: true) {
+            self.uploadSelectedImageToFirebaseStorage(chosenImage:chosenImage)
+            
+        }
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }

@@ -15,6 +15,10 @@
 		097C3EC3228AAF0200F07AB0 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097C3EC1228AAF0200F07AB0 /* ChatViewController.xib */; };
 		097C3EC6228AB9EB00F07AB0 /* ChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097C3EC4228AB9EB00F07AB0 /* ChatMessageTableViewCell.swift */; };
 		097C3EC7228AB9EB00F07AB0 /* ChatMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097C3EC5228AB9EB00F07AB0 /* ChatMessageTableViewCell.xib */; };
+		097C3ECA228C118F00F07AB0 /* AttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097C3EC8228C118F00F07AB0 /* AttachmentTableViewCell.swift */; };
+		097C3ECB228C118F00F07AB0 /* AttachmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097C3EC9228C118F00F07AB0 /* AttachmentTableViewCell.xib */; };
+		097C3ECE228C1CED00F07AB0 /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097C3ECC228C1CED00F07AB0 /* FullScreenImageViewController.swift */; };
+		097C3ECF228C1CED00F07AB0 /* FullScreenImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097C3ECD228C1CED00F07AB0 /* FullScreenImageViewController.xib */; };
 		09FC6065227D75A80016F25A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FC6064227D75A80016F25A /* AppDelegate.swift */; };
 		09FC6067227D75A80016F25A /* LoginAndSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FC6066227D75A80016F25A /* LoginAndSignUpViewController.swift */; };
 		09FC606A227D75A80016F25A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09FC6068227D75A80016F25A /* Main.storyboard */; };
@@ -47,6 +51,10 @@
 		097C3EC1228AAF0200F07AB0 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		097C3EC4228AB9EB00F07AB0 /* ChatMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageTableViewCell.swift; sourceTree = "<group>"; };
 		097C3EC5228AB9EB00F07AB0 /* ChatMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMessageTableViewCell.xib; sourceTree = "<group>"; };
+		097C3EC8228C118F00F07AB0 /* AttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTableViewCell.swift; sourceTree = "<group>"; };
+		097C3EC9228C118F00F07AB0 /* AttachmentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttachmentTableViewCell.xib; sourceTree = "<group>"; };
+		097C3ECC228C1CED00F07AB0 /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
+		097C3ECD228C1CED00F07AB0 /* FullScreenImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullScreenImageViewController.xib; sourceTree = "<group>"; };
 		09FC6061227D75A80016F25A /* jChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09FC6064227D75A80016F25A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09FC6066227D75A80016F25A /* LoginAndSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAndSignUpViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +139,10 @@
 				097C3EC1228AAF0200F07AB0 /* ChatViewController.xib */,
 				097C3EC4228AB9EB00F07AB0 /* ChatMessageTableViewCell.swift */,
 				097C3EC5228AB9EB00F07AB0 /* ChatMessageTableViewCell.xib */,
+				097C3EC8228C118F00F07AB0 /* AttachmentTableViewCell.swift */,
+				097C3EC9228C118F00F07AB0 /* AttachmentTableViewCell.xib */,
+				097C3ECC228C1CED00F07AB0 /* FullScreenImageViewController.swift */,
+				097C3ECD228C1CED00F07AB0 /* FullScreenImageViewController.xib */,
 			);
 			path = jChat;
 			sourceTree = "<group>";
@@ -254,6 +266,8 @@
 				09FC6086227D78250016F25A /* GoogleService-Info.plist in Resources */,
 				09FC606C227D75AA0016F25A /* Assets.xcassets in Resources */,
 				097C3EC3228AAF0200F07AB0 /* ChatViewController.xib in Resources */,
+				097C3ECF228C1CED00F07AB0 /* FullScreenImageViewController.xib in Resources */,
+				097C3ECB228C118F00F07AB0 /* AttachmentTableViewCell.xib in Resources */,
 				09FC606A227D75A80016F25A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,9 +378,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				09FC6090227D9FF80016F25A /* MainViewController.swift in Sources */,
+				097C3ECE228C1CED00F07AB0 /* FullScreenImageViewController.swift in Sources */,
 				09FC6067227D75A80016F25A /* LoginAndSignUpViewController.swift in Sources */,
 				09FC6065227D75A80016F25A /* AppDelegate.swift in Sources */,
 				09FC6088227D7DB10016F25A /* Constants.swift in Sources */,
+				097C3ECA228C118F00F07AB0 /* AttachmentTableViewCell.swift in Sources */,
 				093DFA8C2280833E006AE0D1 /* CollectionManager.swift in Sources */,
 				09FC608C227D8A810016F25A /* BaseViewController.swift in Sources */,
 				093DFA902280AA6D006AE0D1 /* ContactTableViewCell.swift in Sources */,

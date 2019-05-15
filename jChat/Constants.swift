@@ -42,6 +42,7 @@ struct AliasFor {
     static let kUserCollection = CollectionManager.shared.db.collection("Users")
     static let kCurrentUser = Auth.auth().currentUser
     static let kProfilePicStorageRef = CollectionManager.shared.storage.reference().child("UserProfilePics")
+    static let kOtherPicsStorageRef = CollectionManager.shared.storage.reference().child("OtherUploadPics")
     static let kMessagesCollection = CollectionManager.shared.db.collection("Messages")
 }
 struct keyStrings {
@@ -60,6 +61,7 @@ struct keyStrings {
 
 struct Nibname {
     static let kChatMessageCell = "ChatMessageTableViewCell"
+    static let kAttachmentTableViewCell = "AttachmentTableViewCell"
 }
 struct Colors {
     static let kChatGreen = UIColor(red: 220/255.0, green: 251/255.0, blue: 197/255.0, alpha: 1.0)

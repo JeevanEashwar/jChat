@@ -255,6 +255,27 @@ extension UIImageView {
             }
         }
     }
+    func downloadImageWithURLString(urlString : String, completion: @escaping  (_ data:Data)->()) {
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        let activityIndicatorRef = self.startActivityIndicator()
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        activityIndicatorRef.stopAnimating()
+                        self?.image = image
+                        completion(data)
+                    }
+                }
+            }else {
+                DispatchQueue.main.async {
+                    activityIndicatorRef.stopAnimating()
+                }
+            }
+        }
+    }
     func startActivityIndicator() -> UIActivityIndicatorView {
         var activityIndicator: UIActivityIndicatorView!
         activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
